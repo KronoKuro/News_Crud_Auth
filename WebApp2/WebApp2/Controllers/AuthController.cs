@@ -63,4 +63,18 @@ public class AuthController : Controller {
     public IActionResult GetAccess() {
         return Ok(true);
     }
+
+    [HttpPost("api/register")]
+    public IActionResult Register([FromBody] User model)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+        _db.Users.Add(model);
+        _db.SaveChanges();
+        return Ok(model);
+        
+        ViewBag.Message = "Такой пользователь уже есть";
+        return BadRequest(model);
+    }
+
 }

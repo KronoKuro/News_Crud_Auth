@@ -17,9 +17,12 @@ import { MaterialModule } from './material.module.module';
 import { NewsAddComponent } from './news/news-add/news-add.component';
 import { NewsEditComponent } from './news/news-edit/news-edit.component';
 import { AuthGuard } from './login-form/auth.guard';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 const Routes = [
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginFormComponent},
+  {path: 'register', component: RegisterFormComponent},
   {path: 'news', component: NewsComponent, canActivate: [AuthGuard]}
 ];
 
@@ -30,6 +33,7 @@ const Routes = [
     NewsComponent,
     NewsAddComponent,
     NewsEditComponent,
+    RegisterFormComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

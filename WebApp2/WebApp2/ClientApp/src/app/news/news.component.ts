@@ -5,6 +5,7 @@ import { New } from '../models/new.model';
 import { MatDialog } from '@angular/material';
 import { NewsAddComponent } from './news-add/news-add.component';
 import { NewsEditComponent } from './news-edit/news-edit.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-news',
@@ -13,7 +14,7 @@ import { NewsEditComponent } from './news-edit/news-edit.component';
 })
 export class NewsComponent implements OnInit {
 
-  constructor(private newsService: NewsService,private dialog: MatDialog) { };
+  constructor(private newsService: NewsService,private dialog: MatDialog, private router: Router) { };
 
   news: New[]; 
   displayedColumns: string[] = ['Id','Title','Text','DatePost', 'actions'];
@@ -53,6 +54,11 @@ export class NewsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       this.getNews();
     })
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 
 }

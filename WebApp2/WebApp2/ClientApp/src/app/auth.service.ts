@@ -12,6 +12,10 @@ export class AuthService {
     return this.http.get<boolean>('api/checktoken');
   }
 
+  register(data: any) {
+    return this.http.post('api/register', data);
+  }
+
   constructor(private http: HttpClient) { }
 
 }
